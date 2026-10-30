@@ -27,7 +27,9 @@ jobs:
         run: flutter --version
 
       - name: Get Dependencies
-        run: flutter pub get
+        run: |
+          flutter pub get
+          flutter pub upgrade
 
       - name: Build APK
         run: flutter build apk --release --no-tree-shake-icons --no-pub
@@ -40,6 +42,3 @@ jobs:
         with:
           name: CainWynVPN-Secure
           path: CainWynVPN-Secure.apk
-      
-      - name: Search for v1 embedding leftovers
-        run: grep -rn "io.flutter.app" . --include="*.xml" --include="*.java" --include="*.kt"
