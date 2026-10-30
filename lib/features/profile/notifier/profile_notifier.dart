@@ -20,7 +20,6 @@ import 'package:hiddify/features/profile/notifier/active_profile_notifier.dart';
 import 'package:hiddify/features/settings/data/config_option_repository.dart';
 import 'package:hiddify/utils/riverpod_utils.dart';
 import 'package:hiddify/utils/utils.dart';
-import 'package:hiddify/core/model/constants.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -137,24 +136,6 @@ class AddProfileNotifier extends _$AddProfileNotifier with AppLogger {
           )
           .run();
     });
-  }  Future<void> addCainWyn() async {
-    if (state.isLoading) return;
-    state = const AsyncLoading();
-    state = await AsyncValue.guard(() async {
-      final task = _profilesRepo.upsertRemote(Constants.cainwynSubscriptionUrl, userOverride: UserOverride(name: "CainWyn VPN"));
-      return await task
-          .match(
-            (err) {
-              loggy.warning("failed to add cainwyn profile", err);
-              throw err;
-            },
-            (r) {
-              loggy.info("successfully added cainwyn profile");
-              return r;
-            },
-          )
-          .run();
-    });
   }
 }
 
@@ -258,3 +239,4 @@ Future<List<FreeProfile>> freeProfilesFilteredByRegion(Ref ref) async {
   final region = ref.watch(ConfigOptions.region);
   return freeProfiles.where((e) => e.region.contains(region.name) || e.region.isEmpty).toList();
 }
+
