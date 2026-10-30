@@ -40,3 +40,5 @@ jobs:
         with:
           name: CainWynVPN-Secure
           path: CainWynVPN-Secure.apk
+                - name: Search for v1 embedding leftovers
+        run: grep -rn "io.flutter.app" . --include="*.xml" --include="*.java" --include="*.kt"
