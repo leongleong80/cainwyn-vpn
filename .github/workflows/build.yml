@@ -23,9 +23,15 @@ jobs:
           channel: 'stable'
           cache: true
 
-      - name: Flutter version
-        run: flutter --version
-
+      - name: Clean and Rebuild Android Directory
+        run: |
+          echo "Deleting old android directory..."
+          rm -rf android
+          echo "Generating new android directory..."
+          flutter create --platforms=android .
+          echo "Restoring custom AndroidManifest.xml..."
+          # 这里我们使用 GitHub 上的历史文件或直接覆盖（见下方说明）
+          
       - name: Get Dependencies
         run: |
           flutter pub get
