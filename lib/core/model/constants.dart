@@ -3,9 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:hiddify/utils/utils.dart';
 
 abstract class Constants {
-  static const appName = "CainWyn VPN";
-  static const appNameSecondPart = "";
-  static const cainwynSubscriptionUrl = "https://cainwynserver.com/CainWyn2026Vip";
+  static const appName = "Hiddify";
   static const githubUrl = "https://github.com/hiddify/hiddify-next";
   static const licenseUrl = "https://github.com/hiddify/hiddify-next?tab=License-1-ov-file#readme";
   static const githubReleasesApiUrl = "https://api.github.com/repos/hiddify/hiddify-next/releases";

@@ -239,4 +239,3 @@ Future<List<FreeProfile>> freeProfilesFilteredByRegion(Ref ref) async {
   final region = ref.watch(ConfigOptions.region);
   return freeProfiles.where((e) => e.region.contains(region.name) || e.region.isEmpty).toList();
 }
-
