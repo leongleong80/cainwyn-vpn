@@ -1,30 +1,38 @@
-
 name: CainWyn VPN Secure Build
+
 on:
   push:
     branches: [ main ]
   workflow_dispatch:
+
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      
       - name: Setup Java 17
         uses: actions/setup-java@v4
         with:
           distribution: 'temurin'
           java-version: '17'
-      - name: Setup Flutter
+      
+      - name: Setup Flutter 3.22.3 (supports v1 embedding)
         uses: subosito/flutter-action@v2
         with:
+          flutter-version: '3.22.3'
           channel: 'stable'
           cache: true
+      
       - name: Get Dependencies
         run: flutter pub get
-      - name: Build APK
-        run: flutter build apk --release
+
+      - name: Build APK with v1 embedding support
+        run: flutter build apk --release --no-tree-shake-icons
+
       - name: Rename APK
         run: mv build/app/outputs/flutter-apk/app-release.apk CainWynVPN-Secure.apk
+
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
