@@ -28,7 +28,7 @@ jobs:
       - name: Clean and Rebuild Android Directory
         run: |
           rm -rf android
-          flutter create --platforms=android .
+          flutter create --platforms=android --project-name cainwyn_vpn .
           
       # 2. 恢复你的 AndroidManifest.xml（注入网络权限和 App 名字）
       - name: Restore AndroidManifest.xml
